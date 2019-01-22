@@ -1,0 +1,49 @@
+// Grid silent bootstrap
+///***********************************************/
+
+$grid_columns: 12;
+$grid_gutter_width: 30px;
+
+// media steps
+$media_steps: (
+  default: 'default',
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px
+);
+
+// container max width
+$container_max_widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1080px,
+  xxl: 1190px
+);
+
+// fonts
+$font_body: 'Roboto', Helvetica, Arial, sans-serif;
+$font_title: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+
+// typography works in .g-typography
+$line_height_ratio: 1.618;
+$heading_ratio: 1.618;
+$heading_font: $font_title;
+$heading_font_weight: 700;
+$min_font: 14px;
+$max_font: 16px;
+$min_width: 576px;
+$max_width: 1200px;
+$vertical_rhythm: true;
+
+///* colors */
+///***********************************************/
+$color_white: #fff;
+$color_main: #02d0c6;
+$color_black: #141414;
+$color_dark: #4e4444;
+$color_gray: #8b8b8b;
+$color_light_gray: #b2b2b2;
+$color_error: #e24147;

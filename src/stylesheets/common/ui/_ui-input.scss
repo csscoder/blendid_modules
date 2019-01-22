@@ -1,0 +1,78 @@
+///* input */
+///***********************************************/
+
+// for icons above inputs
+// pointer-events: none;
+// <input type="text" class="ui-input ui-input--normal ui-input--default" placeholder="Test">
+
+/* Input */
+/***********************************************/
+.ui-input {
+  @include tr_all;
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  font-family: inherit;
+  line-height: 1.2;
+  box-shadow: none;
+  overflow: visible;
+  vertical-align: top;
+  box-sizing: border-box;
+  appearance: none;
+
+  &[disabled] {
+    cursor: not-allowed;
+    opacity: .4 !important;
+  }
+
+  &::-ms-clear,
+  &::-ms-reveal {
+    display: none;
+  }
+
+  &--small {
+    font-size: em(12px);
+  }
+
+  &--normal {
+    font-size: em(14px);
+  }
+
+  &--default {
+
+    @include placeholder {
+      color: rgba(#343a4e, .3);
+    }
+
+    height: em(40px, 14);
+    padding: em(0 16, 14);
+    border-width: 1px;
+    border-style: solid;
+    border-radius: em(5px, 14);
+    border-color: rgba(#d5d5d5, 1);
+    background-color: transparent;
+    color: #343a4e;
+    box-shadow: none;
+
+    &:hover {
+      border-color: darken(#d5d5d5, 10%) !important;
+    }
+
+    &:focus {
+      border-color: darken(#d5d5d5, 10%);
+      outline: none;
+      background-color: #fff;
+    }
+
+    &.state--error {
+      border-color: $color_error;
+      color: $color_error;
+    }
+  }
+
+}
+

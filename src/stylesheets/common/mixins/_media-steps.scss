@@ -1,0 +1,31 @@
+// media steps
+$media_steps: (
+  default: 'default',
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+  xxx: 1900px
+) !default;
+
+@mixin res($media) {
+  @each $breakpoint, $valueMedia in $media_steps {
+    @if $media == $breakpoint {
+      @media (min-width: $valueMedia) {
+        @content;
+      }
+    }
+  }
+}
+
+@mixin res-less($media) {
+  @each $breakpoint, $valueMedia in $media_steps {
+    @if $media == $breakpoint {
+      $lessStep: $valueMedia - 1;
+      @media (max-width: $lessStep) {
+        @content;
+      }
+    }
+  }
+}

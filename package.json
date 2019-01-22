@@ -1,0 +1,22 @@
+{
+  "name": "den_modules",
+  "title": "Den Modules",
+  "startDate": "2019.01.21",
+  "clientTimeZone": "Asia/Yekaterinburg",
+  "version": "1.0.0",
+  "author": "Alexander Zidyganov",
+  "engines": {
+    "node": ">=6.11.1",
+    "npm": ">=3.10.3"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "blendid",
+    "build": "blendid -- build",
+    "setup": "blendid -- init",
+    "deploy": "node _helpers/_deploy.js"
+  },
+  "dependencies": {
+    "blendid": "https://github.com/csscoderRU/blendid#alfa"
+  }
+}

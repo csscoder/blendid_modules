@@ -1,0 +1,50 @@
+///* form */
+///***********************************************/
+.form {
+  position: relative;
+
+  &__fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  &__row {
+    margin-top: em(20px);
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &-centered {
+      text-align: center;
+    }
+  }
+
+  &__field {
+    position: relative;
+
+    &-label {
+      margin-bottom: em(8, 14);
+      font-family: inherit;
+      font-size: em(14);
+      font-weight: 400;
+      color: #333;
+    }
+
+    &-messages {
+      position: absolute;
+      top: calc(100% + .2em);
+      right: 0;
+
+      &-item {
+        color: $color_error;
+        font-size: em(12);
+      }
+    }
+  }
+}
+
+legend + .form__row {
+  margin-top: 0;
+}

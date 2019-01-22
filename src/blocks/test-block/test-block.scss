@@ -1,0 +1,24 @@
+/* block */
+/***********************************************/
+.test-block {
+  $self: &;
+
+  font-size: 10px;
+
+  @include res(sm) {
+    font-size: 14px;
+  }
+
+  @include res(md) {
+    font-size: 16px;
+  }
+
+  @include res(lg) {
+    font-size: 20px;
+  }
+
+  @include res(xl) {
+    font-size: 30px;
+  }
+
+}

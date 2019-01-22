@@ -1,0 +1,703 @@
+// Typographic v2.9.2 - https://github.com/corysimmons/typographic
+// Ratios
+
+$minor_second: 1.067;
+$major_second: 1.125;
+$minor_third: 1.2;
+$major_third: 1.25;
+$perfect_fourth: 1.333;
+$aug_fourth: 1.414;
+$perfect_fifth: 1.5;
+$minor_sixth: 1.6;
+$golden: 1.618;
+$major_sixth: 1.667;
+$minor_seventh: 1.778;
+$major_seventh: 1.875;
+$octave: 2;
+$major_tenth: 2.5;
+$major_eleventh: 2.667;
+$major_twelfth: 3;
+$double_octave: 4;
+
+// Sans-serif
+$courier: 'Courier New', 'Courier', 'Lucida Sans Typewriter', 'Lucida Typewriter', 'monospace';
+
+//$calibri: 'Calibri', 'Candara', 'Segoe', 'Segoe UI', 'Optima', 'Arial', 'sans-serif';
+//$candara: 'Candara', 'Calibri', 'Segoe', 'Segoe UI', 'Optima', 'Arial', 'sans-serif';
+//$franklin: 'Franklin Gothic Medium', 'Arial', 'sans-serif';
+//$futura: 'Futura', 'Trebuchet MS', 'Arial', 'sans-serif';
+//$geneva: 'Geneva', 'Tahoma', 'Verdana', 'sans-serif';
+//$gill-sans: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'sans-serif';
+$helvetica: 'Helvetica Neue', 'Helvetica', 'Arial', 'sans-serif';
+//$lucida-grande: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Geneva', 'Verdana', 'sans-serif';
+//$optima: 'Optima', 'Segoe', 'Segoe UI', 'Candara', 'Calibri', 'Arial', 'sans-serif';
+//$segoe: 'Segoe', 'Segoe UI', 'Helvetica Neue', 'Arial', 'sans-serif';
+//$tahoma: 'Tahoma', 'Geneva', 'Verdana', 'sans-serif';
+//$trebuchet: 'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', 'Tahoma', 'sans-serif';
+//$verdana: 'Verdana', 'Geneva', 'sans-serif';
+//
+// //Serif
+//$antiqua: 'Book Antiqua', 'Palatino', 'Palatino Linotype', 'Palatino LT STD', 'Georgia', 'serif';
+//$baskerville: 'Baskerville', 'Baskerville old face', 'Hoefler Text', 'Garamond', 'Times New Roman', 'serif';
+//$bodoni: 'Bodoni MT', 'Didot', 'Didot LT STD', 'Hoefler Text', 'Garamond', 'Times New Roman', 'serif';
+//$cambria: 'Cambria', 'Georgia', 'serif';
+//$caslon: 'Big Caslon', 'Book Antiqua', 'Palatino Linotype', 'Georgia', 'serif';
+//$constantia: 'Constantia', 'Palatino', 'Palatino Linotype', 'Palatino LT STD', 'Georgia', 'serif';
+//$didot: 'Didot', 'Didot LT STD', 'Hoefler Text', 'Garamond', 'Times New Roman', 'serif';
+//$garamond: 'Garamond', 'Baskerville', 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', 'serif';
+//$goudy: 'Goudy Old Style', 'Garamond', 'Big Caslon', 'Times New Roman', 'serif';
+//$hoefler: 'Hoefler Text', 'Baskerville old face', 'Garamond', 'Times New Roman', 'serif';
+//$lucida-bright: 'Lucida Bright', 'Georgia', 'serif';
+//$palatino: 'Palatino', 'Palatino Linotype', 'Palatino LT STD', "Book Antiqua", 'Georgia', 'serif';
+
+// Settings
+$line_height_ratio: 1.75 !default;
+$heading_ratio: $golden !default;
+//$body_font: $helvetica !default;
+//$body_font_weight: 300 !default;
+//$body_color: #666 !default;
+$heading_font: $helvetica !default;
+$heading_font_weight: 500 !default;
+$heading_color: #111 !default;
+$min_font: 12px !default;
+$max_font: 20px !default;
+$min_width: 600px !default;
+$max_width: 1140px !default;
+$vertical_rhythm: true !default;
+
+// Helpers
+
+/// A function to remove the unit from a number.
+///
+/// @param {unit} $unit - A unit with a unit value.
+///
+/// @example
+///   _strip-units(1px)
+///
+/// @access private
+
+@function _strip-units($unit) {
+  @return $unit / ($unit * 0 + 1);
+}
+
+/// Creates a baseline grid based off your $line_height_ratio to help visualize your vertical rhythm grid. You can offset the grid by negative or positive pixels to line it up perfectly with the bottom of your text.
+///
+/// @param {color} $color [black] - A color to be lightened and used as the color for the grid.
+/// @param {number} $px_offset [false] - A positive or negative number of pixels to offset the grid by. Useful for lining the bottom of the gridlines up with your text.
+///
+/// @example
+///   @include grid-overlay(blue, 2);
+
+//@mixin grid-overlay($color: black, $px_offset: false) {
+//  body {
+//    background: linear-gradient(to top, rgba($color, .1) 5%, white 5%);
+//    background-size: 100% ($line_height_ratio) + em;
+//    @if ($px_offset) {
+//      background-position: 0 $px_offset + px;
+//    }
+//  }
+//}
+
+/// Returns a "vertical unit". Useful for specifying the height and margins of non-text elements like images and such.
+///
+/// @param {number} $units [1] - Number of units. Accepts floated numbers as well.
+/// @param {number} $px_offset [false] - A positive or negative number of pixels to offset the grid by. Useful for lining the bottom of the gridlines up with your text. Since this doesn't compute a literal pixel you may need to use a floated number (multiples of .25 work well) to keep your rhythm on track.
+///
+/// @example
+///   img {
+///     height: vr-block(5.25);
+///     margin-bottom: vr-block(.25);
+///   }
+
+@function vr-block($units: 1, $px_offset: false) {
+  @if ($px_offset) {
+    @return ( (($line_height_ratio * _strip-units($max_font)) / (_strip-units($max_font) / 2)) * ($units / 2) * (1 + ($px_offset / _strip-units($max_font))) ) + em;
+  } @else {
+    @return ( (($line_height_ratio * _strip-units($max_font)) / (_strip-units($max_font) / 2)) * ($units / 2) ) + em;
+  }
+}
+
+/// Performs exponent math on floated numbers.
+///
+/// @example
+///   math-pow(3, 3)
+///
+/// @access private
+
+@function math-pow($number, $exp) {
+  @if (round($exp) != $exp) {
+    @return math-exp($exp * math-ln($number));
+  }
+
+  $value: 1;
+
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  } @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+
+  @return $value;
+}
+
+/// Helps with math-pow() function
+///
+/// @access private
+
+@function math-factorial($value) {
+  @if $value == 0 {
+    @return 1;
+  }
+
+  $result: 1;
+
+  @for $index from 1 through $value {
+    $result: $result * $index;
+  }
+
+  @return $result;
+}
+
+/// Helps with math-pow() function
+///
+/// @access private
+
+@function math-summation($iteratee, $input, $initial: 0, $limit: 100) {
+  $sum: 0;
+
+  @for $index from $initial to $limit {
+    // $sum: $sum + call($iteratee, $input, $index);
+    $sum: $sum + call(get-function($iteratee), $input, $index);
+  }
+
+  @return $sum;
+}
+
+/// Helps with math-pow() function
+///
+/// @access private
+
+@function math-exp-maclaurin($x, $n) {
+  $result: math-pow($x, $n) / math-factorial($n);
+  @return $result;
+}
+
+/// Helps with math-pow() function
+///
+/// @access private
+
+@function math-exp($value) {
+  $result: math-summation(math-exp-maclaurin, $value, 0, 100);
+  @return $result;
+}
+
+/// Helps with math-pow() function
+///
+/// @access private
+
+@function math-ln-maclaurin($x, $n) {
+  $result: (math-pow(-1, $n + 1) / $n) * (math-pow($x - 1, $n));
+  @return $result;
+}
+
+/// Helps with math-pow() function
+///
+/// @access private
+
+@function math-ln($value) {
+  $ten_exp: 1;
+  $ln_ten: 2.30258509;
+
+  @while ($value > math-pow(10, $ten_exp)) {
+    $ten_exp: $ten_exp + 1;
+  }
+
+  $value: $value / math-pow(10, $ten_exp);
+
+  $result: math-summation(math-ln-maclaurin, $value, 1, 100);
+
+  @return $result + $ten_exp * $ln_ten;
+}
+
+// Typography Mixins
+
+//@mixin t-html() {
+//  font-family: $body-font;
+//  font-weight: $body-font-weight;
+//  color: $body-color;
+//
+//  font-size: $min_font;
+//  line-height: #{$line_height_ratio}em;
+//
+//  @media (min-width: $min_width) {
+//    font-size: calc(#{$min_font} + (#{_strip-units($max_font)} - #{_strip-units($min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+//  }
+//
+//  @media (min-width: $max_width) {
+//    font-size: $max_font;
+//  }
+//}
+
+@mixin t_box {
+  //font-family: $body-font;
+  //font-weight: $body-font-weight;
+  //color: $body-color;
+
+  font-size: $min_font;
+  line-height: #{$line_height_ratio}em;
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$min_font} + (#{_strip-units($max_font)} - #{_strip-units($min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    font-size: $max_font;
+  }
+}
+
+
+//@mixin t-p() {
+//  @include t_html;
+//}
+
+@mixin t_reset {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin t_block {
+  margin: 0 0 #{$line_height_ratio}em 0;
+}
+
+@mixin t_heading {
+  font-family: $heading_font;
+  font-weight: $heading_font_weight;
+  //color: $heading_color;
+  //clear: both;
+}
+
+@mixin t_h1 {
+  $local_min_font: $min_font * (math-pow($heading_ratio, 1.75));
+  $local_max_font: $max_font * (math-pow($heading_ratio, 1.75));
+
+  font-size: $local_min_font;
+  @if ($vertical_rhythm) {
+    margin-top: (($line_height_ratio * $min_font) / ($local_min_font / 1.25)) + em;
+    margin-bottom: (($line_height_ratio * $min_font) / ($local_min_font / .25)) + em;
+    line-height: (($line_height_ratio * $min_font) / ($local_min_font / 1.5)) + em;
+  } @else {
+    margin-top: 0;
+    margin-bottom: .25em;
+    line-height: 1.1em;
+  }
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$local_min_font} + (#{_strip-units($local_max_font)} - #{_strip-units($local_min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    font-size: $local_max_font;
+    @if ($vertical_rhythm) {
+      margin-top: (($line_height_ratio * $max_font) / ($local_max_font / 1.25)) + em;
+      margin-bottom: (($line_height_ratio * $max_font) / ($local_max_font / .25)) + em;
+      line-height: (($line_height_ratio * $max_font) / ($local_max_font / 1.5)) + em;
+    }
+  }
+}
+
+@mixin t_h2 {
+  $local_min_font: $min_font * (math-pow($heading_ratio, 1.4));
+  $local_max_font: $max_font * (math-pow($heading_ratio, 1.4));
+
+  font-size: $local_min_font;
+  @if ($vertical_rhythm) {
+    margin-top: (($line_height_ratio * $min_font) / ($local_min_font / 1.25)) + em;
+    margin-bottom: (($line_height_ratio * _strip-units($min_font)) / (_strip-units($local_min_font) / .25) * (1 + (3 / _strip-units($local_min_font)))) + em;
+    line-height: (($line_height_ratio * $min_font) / ($local_min_font / 1.5)) + em;
+  } @else {
+    margin-top: 0;
+    margin-bottom: .25em;
+    line-height: 1.2em;
+  }
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$local_min_font} + (#{_strip-units($local_max_font)} - #{_strip-units($local_min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    font-size: $local_max_font;
+    @if ($vertical_rhythm) {
+      margin-top: (($line_height_ratio * $max_font) / ($local_max_font / 1.25)) + em;
+      margin-bottom: (($line_height_ratio * _strip-units($max_font)) / (_strip-units($local_max_font) / .25) * (1 + (3 / _strip-units($local_max_font)))) + em;
+      line-height: (($line_height_ratio * $max_font) / ($local_max_font / 1.5)) + em;
+    }
+  }
+}
+
+@mixin t_h3 {
+  $local_min_font: $min_font * (math-pow($heading_ratio, 1.05));
+  $local_max_font: $max_font * (math-pow($heading_ratio, 1.05));
+
+  font-size: $local_min_font;
+  @if ($vertical_rhythm) {
+    margin-top: (($line_height_ratio * $min_font) / ($local_min_font / 1.25)) + em;
+    margin-bottom: (($line_height_ratio * _strip-units($min_font)) / (_strip-units($local_min_font) / .25) * (1 + (3 / _strip-units($local_min_font)))) + em;
+    line-height: (($line_height_ratio * $min_font) / ($local_min_font / 1.5)) + em;
+  } @else {
+    margin-top: 0;
+    margin-bottom: .25em;
+    line-height: 1.3em;
+  }
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$local_min_font} + (#{_strip-units($local_max_font)} - #{_strip-units($local_min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    font-size: $local_max_font;
+    @if ($vertical_rhythm) {
+      margin-top: (($line_height_ratio * $max_font) / ($local_max_font / 1.25)) + em;
+      margin-bottom: (($line_height_ratio * _strip-units($max_font)) / (_strip-units($local_max_font) / .25) * (1 + (3 / _strip-units($local_max_font)))) + em;
+      line-height: (($line_height_ratio * $max_font) / ($local_max_font / 1.5)) + em;
+    }
+  }
+}
+
+@mixin t_h4 {
+  $local_min_font: $min_font * (math-pow($heading_ratio, .7));
+  $local_max_font: $max_font * (math-pow($heading_ratio, .7));
+
+  font-size: $local_min_font;
+  @if ($vertical_rhythm) {
+    margin-top: (($line_height_ratio * $min_font) / ($local_min_font / 1.25)) + em;
+    margin-bottom: (($line_height_ratio * _strip-units($min_font)) / (_strip-units($local_min_font) / .25) * (1 + (3 / _strip-units($local_min_font)))) + em;
+    line-height: (($line_height_ratio * $min_font) / ($local_min_font / 1.5)) + em;
+  } @else {
+    margin-top: 0;
+    margin-bottom: .25em;
+    line-height: 1.4em;
+  }
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$local_min_font} + (#{_strip-units($local_max_font)} - #{_strip-units($local_min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    font-size: $local_max_font;
+    @if ($vertical_rhythm) {
+      margin-top: (($line_height_ratio * $max_font) / ($local_max_font / 1.25)) + em;
+      margin-bottom: (($line_height_ratio * _strip-units($max_font)) / (_strip-units($local_max_font) / .25) * (1 + (3 / _strip-units($local_max_font)))) + em;
+      line-height: (($line_height_ratio * $max_font) / ($local_max_font / 1.5)) + em;
+    }
+  }
+}
+
+@mixin t_h5 {
+  $local_min_font: $min_font * (math-pow($heading_ratio, .35));
+  $local_max_font: $max_font * (math-pow($heading_ratio, .35));
+
+  font-size: $local_min_font;
+  @if ($vertical_rhythm) {
+    margin-top: (($line_height_ratio * $min_font) / ($local_min_font / 1.25)) + em;
+    margin-bottom: (($line_height_ratio * $min_font) / ($local_min_font / .25)) + em;
+    line-height: (($line_height_ratio * $min_font) / ($local_min_font / 1.5)) + em;
+  } @else {
+    margin-top: 0;
+    margin-bottom: .25em;
+    line-height: 1.5em;
+  }
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$local_min_font} + (#{_strip-units($local_max_font)} - #{_strip-units($local_min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    font-size: $local_max_font;
+    @if ($vertical_rhythm) {
+      margin-top: (($line_height_ratio * $max_font) / ($local_max_font / 1.25)) + em;
+      margin-bottom: (($line_height_ratio * $max_font) / ($local_max_font / .25)) + em;
+      line-height: (($line_height_ratio * $max_font) / ($local_max_font / 1.5)) + em;
+    }
+  }
+}
+
+@mixin t_h6 {
+  $local_min_font: $min_font;
+  $local_max_font: $max_font;
+
+  font-size: $local_min_font;
+  @if ($vertical_rhythm) {
+    margin-top: (($line_height_ratio * $min_font) / ($local_min_font / 1.25)) + em;
+    margin-bottom: (($line_height_ratio * _strip-units($min_font)) / (_strip-units($local_min_font) / .25) * (1 + (2 / _strip-units($local_min_font)))) + em;
+    line-height: (($line_height_ratio * $min_font) / ($local_min_font / 1.5)) + em;
+  } @else {
+    margin-top: 0;
+    margin-bottom: .25em;
+    line-height: 1.6em;
+  }
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$local_min_font} + (#{_strip-units($local_max_font)} - #{_strip-units($local_min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    font-size: $local_max_font;
+    @if ($vertical_rhythm) {
+      margin-top: (($line_height_ratio * $min_font) / ($local_min_font / 1.25)) + em;
+      margin-bottom: (($line_height_ratio * _strip-units($min_font)) / (_strip-units($local_min_font) / .25) * (1 + (1 / _strip-units($local_min_font)))) + em;
+      line-height: (($line_height_ratio * $min_font) / ($local_min_font / 1.5)) + em;
+    }
+  }
+}
+
+@mixin t_blockquote {
+  font-style: italic;
+
+  cite {
+    display: block;
+    font-style: normal;
+  }
+}
+
+@mixin t_pre {
+  margin-bottom: vr-block(1);
+  padding: ($line_height_ratio * .5) + em;
+
+  code {
+    padding: 0;
+  }
+}
+
+@mixin t_code {
+  padding: ($line_height_ratio * .05) + em ($line_height_ratio * .15) + em;
+  font-family: $courier;
+  line-height: 0;
+}
+
+@mixin t_abbr {
+  cursor: help;
+  border-bottom: 1px dotted currentColor;
+}
+
+@mixin t_dt {
+  color: $heading_color;
+  font-weight: bold;
+}
+
+@mixin t_fieldset {
+  max-width: 100%;
+  margin-bottom: vr-block(1, 1);
+  padding: vr-block(.5) vr-block() vr-block();
+  border-width: 1px;
+  border-style: solid;
+
+  @media (min-width: $max_width) {
+    margin-bottom: vr-block(1.25, -1);
+  }
+
+  button,
+  input[type="submit"] {
+    margin-bottom: 0;
+  }
+}
+
+@mixin t_legend {
+  color: $heading_color;
+  font-weight: bold;
+}
+
+@mixin t_input {
+  $local_min_font: $min_font;
+  $local_max_font: $max_font;
+
+  display: block;
+  max-width: 100%;
+  margin-bottom: vr-block(.5, 7);
+  padding: vr-block(.25);
+  font-size: $local_min_font;
+
+  @media (min-width: $min_width) {
+    font-size: calc(#{$local_min_font} + (#{_strip-units($local_max_font)} - #{_strip-units($local_min_font)}) * ((100vw - #{$min_width}) / (#{_strip-units($max_width)} - #{_strip-units($min_width)})));
+  }
+
+  @media (min-width: $max_width) {
+    margin-bottom: vr-block(.25, 3.5);
+    font-size: $local_max_font;
+  }
+}
+
+@mixin t_label {
+  display: block;
+  margin-bottom: vr-block(-.25, -10);
+  padding-bottom: vr-block(.125);
+}
+
+@mixin t_table {
+  width: 100%;
+  margin-bottom: vr-block(1, 5);
+  border-spacing: 0;
+  border-collapse: collapse;
+  @media (min-width: $max_width) {
+    margin-bottom: vr-block(1, 3);
+  }
+}
+
+@mixin t_th {
+  padding: vr-block(.125) vr-block(.5);
+  text-align: left;
+  color: $heading_color;
+
+  @media (min-width: $max_width) {
+    padding: vr-block(.25) vr-block(.5);
+  }
+}
+
+@mixin t_td {
+  //padding: ($line_height_ratio * .5) + em;
+  padding: vr-block(.125) vr-block(.5);
+
+  @media (min-width: $max_width) {
+    padding: vr-block(.25) vr-block(.5);
+  }
+}
+
+/// The Typographic Reset. This is where Typographic goes through every markup element and styles it to adhere to a vertical rhythm. After you set your variables in a settings file fire this mixin.
+///
+/// @example
+///   @include typographic;
+
+@mixin typographic {
+
+  @include t_box;
+
+  // h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+  // a, abbr, acronym, address, big, cite, code,
+  // del, dfn, em, img, ins, kbd, q, s, samp,
+  // small, strike, strong, sub, sup, tt, var,
+  // b, u, i, center,
+  // dl, dt, dd, ol, ul, li,
+  // fieldset, form, label, legend,
+  // table, caption, tbody, tfoot, thead, tr, th, td
+  // {
+  //  @include t_reset;
+  // }
+
+  p,
+  blockquote,
+  pre,
+  address,
+  dl,
+  ol,
+  ul,
+  table {
+    @include t_block;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include t_heading;
+  }
+
+  h1 {
+    @include t_h1;
+  }
+
+  h2 {
+    @include t_h2;
+  }
+
+  h3 {
+    @include t_h3;
+  }
+
+  h4 {
+    @include t_h4;
+  }
+
+  h5 {
+    @include t_h5;
+  }
+
+  h6 {
+    @include t_h6;
+  }
+
+  blockquote {
+    @include t_blockquote;
+  }
+
+  pre {
+    @include t_pre;
+  }
+
+  code {
+    @include t_code;
+  }
+
+  big,
+  small,
+  sub,
+  sup {
+    line-height: 0;
+  }
+
+  abbr,
+  acronym {
+    @include t_abbr;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  table {
+    @include t_table;
+  }
+
+  th {
+    @include t_th;
+  }
+
+  td {
+    @include t_td;
+  }
+
+  dt {
+    @include t_dt;
+  }
+
+  ul {
+    padding-left: 1.1em;
+  }
+
+  ol {
+    padding-left: 1.4em;
+  }
+}
+
+@mixin font_scale($font_min: 14px, $font_max: 16px, $width_min: 576px, $width_max: 1400px) {
+  font-size: em($font_min);
+  @media (min-width: $width_min) {
+    font-size: calc(#{$font_min} + (#{_strip-units($font_max)} - #{_strip-units($font_min)}) * ((100vw - #{$width_min}) / (#{_strip-units($width_max)} - #{_strip-units($width_min)})));
+  }
+  @media (min-width: $width_max) {
+    font-size: em($font_max);
+  }
+}
+
+%helperwidth {
+  &::before {
+    display: inline-block;
+    content: 'hello word';
+    white-space: nowrap;
+    outline: 1px solid $color_error;
+  }
+}
