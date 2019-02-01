@@ -14,9 +14,11 @@
     "dev": "blendid",
     "build": "blendid -- build",
     "setup": "blendid -- init",
-    "deploy": "node _helpers/_deploy.js"
+    "deploy": "node _helpers/_deploy.js",
+    "styleguide": "node _helpers/styleguide.js"
   },
   "dependencies": {
-    "blendid": "https://github.com/csscoderRU/blendid#alfa"
+    "blendid": "https://github.com/csscoderRU/blendid#alfa",
+    "kss": "^3.0.0-beta.18"
   }
 }

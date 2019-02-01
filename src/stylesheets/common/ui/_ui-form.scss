@@ -16,8 +16,16 @@
       margin-top: 0;
     }
 
-    &-centered {
+    &--centered {
       text-align: center;
+    }
+
+    &--small {
+      margin-top: em(12);
+    }
+
+    &--big {
+      margin-top: em(40);
     }
   }
 
@@ -26,10 +34,11 @@
 
     &-label {
       margin-bottom: em(8, 14);
+      letter-spacing: em(1px, 14);
+      color: $color_gray;
       font-family: inherit;
       font-size: em(14);
       font-weight: 400;
-      color: #333;
     }
 
     &-messages {

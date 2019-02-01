@@ -34,12 +34,18 @@ https://csscoder.pro/
   min-height: 100%;
 }
 
-
 ///* include modules */
 ///***********************************************/
-@import "../blocks/test-block/test-block";
-
+@import "../blocks/test/test";
 
 @import "common/typograph";
 @import "common/vue-helpers";
 @import "common/ui/ui";
+
+
+///* helper class for style guide */
+///***********************************************/
+.kss-modifier__example {
+  font-family: $font_body;
+  font-size: 16px;
+}

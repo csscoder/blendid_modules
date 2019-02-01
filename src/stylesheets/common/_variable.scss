@@ -41,9 +41,17 @@ $vertical_rhythm: true;
 ///* colors */
 ///***********************************************/
 $color_white: #fff;
-$color_main: #02d0c6;
+$color_main: #d08c00;
 $color_black: #141414;
 $color_dark: #4e4444;
 $color_gray: #8b8b8b;
 $color_light_gray: #b2b2b2;
 $color_error: #e24147;
+
+
+///*  ui border colors */
+///***********************************************/
+$color_border_default: #e0e0e0;
+$color_border_hover: #bbb;
+$color_border_focus: #6747cd;
+$color_border_error: #e24147;

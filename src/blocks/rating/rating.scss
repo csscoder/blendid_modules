@@ -1,0 +1,16 @@
+/* header  */
+/***********************************************/
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+$customFont: 'Montserrat', sans-serif;
+
+.header {
+  $self: &;
+
+  font-family: $customFont;
+
+  &__box {
+    // some style
+  }
+
+}
